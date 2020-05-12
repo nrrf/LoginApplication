@@ -10,13 +10,14 @@ package Control;
  * @author LENOVO
  */
 
-import Entidad.Sistema;
+//import Entidad.Sistema;
 import Entidad.Usuario;
-import Frontera.FramePrincipal;
+//import Frontera.FramePrincipal;
+import DAO.UsuarioDAO;
 public class ValidarLogin {
     
-    private Sistema sistema = FramePrincipal.sistema;
-    
+    //private Sistema sistema = FramePrincipal.sistema;
+    private UsuarioDAO dao=new UsuarioDAO();
     public ValidarLogin() {
     }
     
@@ -29,10 +30,15 @@ public class ValidarLogin {
             return ("Longitud nombre incorrecto");
         }
         
+        /*
         for (Usuario u : sistema.getUsuario()) {
             if(u.getNombre().equals(usuario.getNombre()) && u.getPassword().equals(usuario.getPassword())){
                 return ("Bienvenido");
             }
+        }
+*/ 
+        if(dao.leer(usuario)!=null){
+            return("Bienvenido");
         }
         
         return ("Datos incorrectos");
